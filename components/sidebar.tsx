@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { BarChart3, Clock, Cog, Home, Menu, ShieldBan, X, LogOut, Quote } from "lucide-react"
+import { signOut } from "@/app/actions/auth"
 
 import { Button } from "@/components/ui/button"
 import { useSidebar } from "@/components/sidebar-provider"
@@ -134,7 +135,7 @@ export function Sidebar() {
               </div>
               <ModeToggle />
             </div>
-            <Button variant="outline" className="mt-2 w-full justify-start gap-2">
+            <Button variant="outline" className="mt-2 w-full justify-start gap-2" onClick={() => signOut()}>
               <LogOut className="h-4 w-4" />
               Log out
             </Button>
