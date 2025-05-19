@@ -4,6 +4,9 @@ import { createClient } from "@/lib/supabase/server"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
+// Update the signInWithGoogle function to include the correct redirectTo URL
+// and add query parameters for getting a refresh token
+
 export async function signInWithGoogle() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
@@ -12,6 +15,10 @@ export async function signInWithGoogle() {
     provider: "google",
     options: {
       redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
     },
   })
 
