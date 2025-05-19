@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { LoginForm } from "@/components/auth/login-form"
+import { OAuthForm } from "@/components/auth/oauth-form"
 
 export const metadata: Metadata = {
   title: "Login - FokusMaster",
@@ -39,15 +39,20 @@ export default function LoginPage() {
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-            <p className="text-sm text-muted-foreground">Enter your credentials to sign in to your account</p>
+            <h1 className="text-2xl font-semibold tracking-tight">Welcome to FokusMaster</h1>
+            <p className="text-sm text-muted-foreground">Sign in to your account to continue</p>
           </div>
-          <LoginForm />
+          <OAuthForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
-            Don't have an account?{" "}
-            <Link href="/signup" className="underline underline-offset-4 hover:text-primary">
-              Sign up
+            By signing in, you agree to our{" "}
+            <Link href="#" className="underline underline-offset-4 hover:text-primary">
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link href="#" className="underline underline-offset-4 hover:text-primary">
+              Privacy Policy
             </Link>
+            .
           </p>
         </div>
       </div>

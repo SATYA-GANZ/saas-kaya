@@ -4,9 +4,6 @@ import { createClient } from "@/lib/supabase/server"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-// Update the signInWithGoogle function to include the correct redirectTo URL
-// and add query parameters for getting a refresh token
-
 export async function signInWithGoogle() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
@@ -36,4 +33,24 @@ export async function signOut() {
 
   await supabase.auth.signOut()
   redirect("/login")
+}
+
+export async function getUserProfile() {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    return null
+  }
+
+  return {
+    id: user.id,
+    email: user.email,
+    name: user.user_metadata?.full_name || user.user_metadata?.name || "User",
+    avatar: user.user_metadata?.avatar_url || null,
+  }
 }
